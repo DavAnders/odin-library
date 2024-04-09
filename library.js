@@ -41,7 +41,7 @@ function displayBooks() {
         <button class="remove-book" data-index="${index}">Remove Book</button>
     </div>`;
     bookCard.setAttribute("data-index", index);
-    bookCard.setAttribute("type", "card-container");
+    bookCard.setAttribute("class", "card-container");
     libraryContainer.appendChild(bookCard);
   });
 

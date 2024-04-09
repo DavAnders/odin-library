@@ -8,36 +8,39 @@
     <script src="library.js" defer></script>
   </head>
   <body>
-    <button class="new-book">NEW BOOK</button>
-    <div id="new-book-form" style="display: none">
-      <form id="book-form">
-        <input
-          type="text"
-          id="title"
-          name="title"
-          placeholder="Title"
-          required
-        />
-        <input
-          type="text"
-          id="author"
-          name="author"
-          placeholder="Author"
-          required
-        />
-        <input
-          type="number"
-          id="pages"
-          name="pages"
-          placeholder="Number of Pages"
-          required
-        />
-        <input type="checkbox" id="read" name="read" />
-        <label for="read">Read?</label>
-        <button type="submit">Add Book</button>
-      </form>
+    <div class="body-container">
+      <button class="new-book">NEW BOOK</button>
+      <div id="new-book-form" style="display: none">
+        <form id="book-form">
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="Title"
+            required
+          />
+          <input
+            type="text"
+            id="author"
+            name="author"
+            placeholder="Author"
+            required
+          />
+          <input
+            type="number"
+            id="pages"
+            name="pages"
+            placeholder="Number of Pages"
+            required
+          />
+          <div class="read-checkbox">
+            <input type="checkbox" id="read" name="read" />
+            <label for="read">Read?</label>
+          </div>
+          <button type="submit">Add Book</button>
+        </form>
+      </div>
+      <div class="library"></div>
     </div>
-
-    <div class="library"></div>
   </body>
 </html>
