@@ -39,18 +39,26 @@ function displayBooks() {
     </div>
     <div class="book-actions">
         <button class="remove-book" data-index="${index}">Remove Book</button>
+        <button class="toggle-read" data-index="${index}">Toggle Read</button>
     </div>`;
     bookCard.setAttribute("data-index", index);
     bookCard.setAttribute("class", "card-container");
     libraryContainer.appendChild(bookCard);
   });
+  attachRemoveBookEventListeners();
+  attachToggleReadEventListeners();
+}
 
+function attachRemoveBookEventListeners() {
   document.querySelectorAll(".remove-book").forEach((button) => {
-    button.addEventListener("click", function () {
-      const bookIndex = this.getAttribute("data-index");
-      myLibrary.splice(bookIndex, 1);
-      displayBooks();
-    });
+    button.removeEventListener("click", removeBook); // Prevent duplicate handlers
+    button.addEventListener("click", removeBook);
+  });
+}
+function attachToggleReadEventListeners() {
+  document.querySelectorAll(".toggle-read").forEach((button) => {
+    button.removeEventListener("click", toggleReadStatus); // Prevent duplicate handlers
+    button.addEventListener("click", toggleReadStatus);
   });
 }
 
@@ -71,3 +79,23 @@ document.querySelector(".new-book").addEventListener("click", () => {
   const form = document.getElementById("new-book-form");
   form.style.display = form.style.display === "none" ? "block" : "none";
 });
+
+document.querySelectorAll(".toggle-read").forEach((button) => {
+  button.addEventListener("click", function () {
+    const bookIndex = this.getAttribute("data-index");
+    myLibrary[bookIndex].toggleRead();
+    displayBooks();
+  });
+});
+
+function removeBook() {
+  const bookIndex = parseInt(this.getAttribute("data-index"), 10);
+  myLibrary.splice(bookIndex, 1);
+  displayBooks();
+}
+
+function toggleReadStatus() {
+  const bookIndex = parseInt(this.getAttribute("data-index"), 10);
+  myLibrary[bookIndex].toggleRead();
+  displayBooks();
+}
