@@ -21,12 +21,27 @@ function displayBooks() {
   myLibrary.forEach((book, index) => {
     const bookCard = document.createElement("div");
     bookCard.innerHTML = `
+    <div class="book-info">
         <h2>${book.title}</h2>
-        <p>Author: ${book.author}</p>
-        <p>Pages: ${book.pages}</p>
-        ${book.read ? "<p>Status: Read</p>" : "<p>Status: Not Read</p>"}
-        <button class="remove-book" data-index="${index}">Remove Book</button>`;
+    </div>
+    <div class="book-info">
+        <p><strong>Author:</strong> ${book.author}</p>
+    </div>
+    <div class="book-info">
+        <p><strong>Pages:</strong> ${book.pages}</p>
+    </div>
+    <div class="book-info">
+        ${
+          book.read
+            ? "<p><strong>Status:</strong> Read</p>"
+            : "<p><strong>Status:</strong> Not Read</p>"
+        }
+    </div>
+    <div class="book-actions">
+        <button class="remove-book" data-index="${index}">Remove Book</button>
+    </div>`;
     bookCard.setAttribute("data-index", index);
+    bookCard.setAttribute("type", "card-container");
     libraryContainer.appendChild(bookCard);
   });
 
